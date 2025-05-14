@@ -1,0 +1,176 @@
+/* Estilos específicos para o formulário de relatório */
+.report-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.report-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  position: relative;
+  padding-bottom: 15px;
+  font-weight: 600;
+}
+
+.report-container h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: #4a6cf7;
+  border-radius: 2px;
+}
+
+#auth-required-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#auth-required-message a {
+  color: #721c24;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9f9f9;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #4a6cf7;
+  box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
+  outline: none;
+}
+
+.form-group input[type="file"] {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px dashed #e0e0e0;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.location-options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+#location-status {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-size: 14px;
+}
+
+#location-status .success {
+  color: #388e3c;
+}
+
+#location-status .error {
+  color: #d32f2f;
+}
+
+#map-container {
+  margin: 20px 0;
+}
+
+#report-map {
+  height: 300px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+}
+
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #4a6cf7;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #3a5bd9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(74, 108, 247, 0.3);
+}
+
+.btn-secondary {
+  background-color: #4d68ff;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #1e2df7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .report-container {
+    padding: 20px;
+    margin: 30px 15px;
+  }
+
+  .location-options {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .location-options span {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  #report-map {
+    height: 250px;
+  }
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ver Mapa - Voz do Bairro</title>
+  <link rel="icon" href="./img/logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/perfil.css">
+  <link rel="stylesheet" href="./css/map.css">
+  <link rel="stylesheet" href="./css/dark-theme.css">
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  
+  <header>
+      <nav class="navbar">
+          <div class="logo">
+              <a href="./index.html">
+                  <img class="logo" src="./img/Logo.png" alt="Logo Voz do Bairro">
+              </a>
+          </div>
+          <div class="nav-links">
+              <a href="./index.html">Início</a>
+              <a href="./map.html" class="active">Ver Mapa</a>
+              <a href="./relatórios.html">Relatórios</a>
+              <a href="./report.html">Relatar Problema</a>
+              <a href="./sobre.html">Sobre</a>
+              <a href="./login.html" id="login-status">Login</a>
+              <div class="user-avatar" id="user-avatar" style="display: none;">
+                  <div class="avatar-circle">
+                      <span class="initials">?</span>
+                  </div>
+                  <div class="dropdown-menu">
+                      <a href="./perfil.html">Meu Perfil</a>
+                      <a href="#" id="logout-link">Sair</a>
+                  </div>
+                  
+              </div>
+              <button class="theme-toggle-with-images" id="theme-toggle" aria-label="Alternar tema">
+                    <img src="./img/sol.png" alt="Ícone de Sol" class="sun-icon">
+                    <img src="./img/lua-crescente.png" alt="Ícone de Lua" class="moon-icon">
+                </button>
+          </div>
+          <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+      </nav>
+  </header>
+
+  <main>
+      <section class="map-container">
+          <div class="map-controls">
+              <h2>Mapa de Problemas da Comunidade</h2>
+              <div class="map-actions">
+                  <button id="use-my-location" class="btn-location">
+                      <img src="./img/location-icon.png" alt="Localização" class="location-icon">
+                      Utilizar minha localização atual
+                  </button>
+              </div>
+              <div class="map-filters">
+                  <select id="filter-type" class="map-filter">
+                      <option value="">Todos os tipos</option>
+                      <option value="pothole">Buracos</option>
+                      <option value="damaged_sidewalk">Calçadas Danificadas</option>
+                      <option value="street_light">Luzes de Rua</option>
+                      <option value="graffiti">Pichações</option>
+                      <option value="flooding">Inundações</option>
+                  </select>
+                  <select id="filter-severity" class="map-filter">
+                      <option value="">Todas as gravidades</option>
+                      <option value="high">Alta</option>
+                      <option value="medium">Média</option>
+                      <option value="low">Baixa</option>
+                  </select>
+                  <button id="apply-filters" class="btn-filter">Filtrar</button>
+              </div>
+          </div>
+          
+          <div id="map-wrapper">
+              <div id="map"></div>
+              
+          </div>
+          
+          <div class="map-legend">
+              <h3>Legenda</h3>
+              <ul>
+                  <li><span class="legend-marker pothole"></span> Buracos</li>
+                  <li><span class="legend-marker damaged_sidewalk"></span> Calçadas Danificadas</li>
+                  <li><span class="legend-marker street_light"></span> Luzes de Rua</li>
+                  <li><span class="legend-marker graffiti"></span> Pichações</li>
+                  <li><span class="legend-marker flooding"></span> Inundações</li>
+                  <li><span class="legend-marker user-location"></span> Sua localização</li>
+              </ul>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <div class="footer-content">
+          <div class="footer-section">
+              <h3>Voz do Bairro</h3>
+              <p>Uma plataforma para cidadãos relatarem problemas de infraestrutura em sua comunidade.</p>
+          </div>
+          <div class="footer-section">
+              <h3>Links Rápidos</h3>
+              <ul>
+                  <li><a href="./index.html">Início</a></li>
+                  <li><a href="./map.html">Ver Mapa</a></li>
+                  <li><a href="./relatórios.html">Relatórios</a></li>
+                  <li><a href="./report.html">Relatar Problema</a></li>
+                  <li><a href="./sobre.html">Sobre</a></li>
+                  <li><a href="./login.html" id="login-status-footer">Login</a></li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Contato</h3>
+              <p>Email: contato@vozbairro.com.br</p>
+              <p>Telefone: +55 (11) 99841-4354</p>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>&copy; 2025 Voz do Bairro. Todos os direitos reservados.</p>
+      </div>
+  </footer>
+ 
+  <!-- Aba de Suporte -->
+  <div id="support-tab" class="support-tab">
+      <span>Suporte</span>
+  </div>
+
+  <!-- Modal de Suporte -->
+  <div id="support-modal" class="support-modal">
+      <div class="support-modal-content">
+          <span class="close-support-modal">&times;</span>
+          <h2>Como podemos ajudar?</h2>
+          <ul class="support-options">
+              <li><a href="./sobre.html#faq">FAQ</a></li>
+              <li><a href="./sobre.html#contact">Formulário de Contato</a></li>
+              <li><a href="#">Chat ao Vivo (em breve)</a></li>
+          </ul>
+      </div>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="./js/script.js"></script>
+  <script src="./js/login.js"></script>
+  <script src="./js/map.js"></script>
+  <script src="./js/support.js"></script>
+  <script src="./js/theme.js"></script>
+</body>
+</html>
+

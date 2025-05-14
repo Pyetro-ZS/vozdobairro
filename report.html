@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatar Problema - Voz do Bairro</title>
+    <link rel="icon" href="./img/logo-icon.png" type="image/png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/perfil.css">
+    <link rel="stylesheet" href="./css/map-report.css">
+    <link rel="stylesheet" href="./css/report-cards.css">
+    <link rel="stylesheet" href="./css/report-form.css">
+    <link rel="stylesheet" href="./css/support.css">
+    <link rel="stylesheet" href="./css/dark-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html">
+                    <img class="logo" src="./img/Logo.png" alt="Logo Voz do Bairro">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="./index.html">Início</a>
+                <a href="./map.html">Ver Mapa</a>
+                <a href="./relatórios.html">Relatórios</a>
+                <a href="./report.html" class="active">Relatar Problema</a>
+                <a href="./sobre.html">Sobre</a>
+                <a href="./login.html" id="login-status">Login</a>
+                <div class="user-avatar" id="user-avatar" style="display: none;">
+                    <div class="avatar-circle">
+                        <span class="initials">?</span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="./perfil.html">Meu Perfil</a>
+                        <a href="#" id="logout-link">Sair</a>
+                    </div>
+                </div>
+                <button class="theme-toggle-with-images" id="theme-toggle" aria-label="Alternar tema">
+                    <img src="./img/sol.png" alt="Ícone de Sol" class="sun-icon">
+                    <img src="./img/lua-crescente.png" alt="Ícone de Lua" class="moon-icon">
+                </button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="report-container">
+            <h2>Relatar um Problema de Infraestrutura</h2>
+            <div id="auth-required-message" class="hidden">
+                <p>Você precisa estar logado para relatar um problema. <a href="#" id="login-link">Entre aqui</a> ou <a href="register.html">crie uma conta</a>.</p>
+            </div>
+            <div id="report-form-container">
+                <form id="report-form" novalidate>
+                    <div class="form-group">
+                        <label for="issue-type">Tipo de Problema</label>
+                        <select id="issue-type" required>
+                            <option value="">Selecione um tipo de problema</option>
+                            <option value="pothole">Buraco</option>
+                            <option value="damaged_sidewalk">Calçada Danificada</option>
+                            <option value="street_light">Luz de Rua Apagada</option>
+                            <option value="graffiti">Pichação</option>
+                            <option value="flooding">Inundação</option>
+                            <option value="other">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="other-issue-container" style="display: none;">
+                        <label for="other-issue">Especificar Problema</label>
+                        <input type="text" id="other-issue">
+                    </div>
+                    <div class="form-group">
+                        <label for="issue-description">Descrição</label>
+                        <textarea id="issue-description" rows="4" required placeholder="Por favor, forneça detalhes sobre o problema..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="issue-severity">Gravidade</label>
+                        <select id="issue-severity" required>
+                            <option value="low">Baixa - Problema menor</option>
+                            <option value="medium">Média - Necessita atenção</option>
+                            <option value="high">Alta - Perigo à segurança</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Localização</label>
+                        <div class="location-options">
+                            <button type="button" id="use-current-location" class="btn btn-secondary">Usar Minha Localização Atual</button>
+                            <span>ou</span>
+                            <button type="button" id="select-on-map" class="btn btn-secondary">Selecionar no Mapa</button>
+                        </div>
+                        <div id="location-status">Nenhuma localização selecionada</div>
+                        <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="longitude" name="longitude">
+                    </div>
+                    <div id="map-container" class="hidden">
+                        <div id="report-map"></div>
+                        <button type="button" id="confirm-location" class="btn btn-primary">Confirmar Localização</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="issue-photo">Enviar Foto (opcional)</label>
+                        <input type="file" id="issue-photo" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Relato</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Aba de Suporte -->
+    <div id="support-tab" class="support-tab">
+        <span>Suporte</span>
+    </div>
+
+    <!-- Modal de Suporte -->
+    <div id="support-modal" class="support-modal">
+        <div class="support-modal-content">
+            <span class="close-support-modal">&times;</span>
+            <h2>Como podemos ajudar?</h2>
+            <ul class="support-options">
+                <li><a href="./sobre.html#faq">FAQ</a></li>
+                <li><a href="./sobre.html#contact">Formulário de Contato</a></li>
+                <li><a href="#">Chat ao Vivo (em breve)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Voz do Bairro</h3>
+                <p>Uma plataforma para cidadãos relatarem problemas de infraestrutura em sua comunidade.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="./index.html">Início</a></li>
+                    <li><a href="./map.html">Ver Mapa</a></li>
+                    <li><a href="./relatórios.html">Relatórios</a></li>
+                    <li><a href="./report.html" class="active">Relatar Problema</a></li>
+                    <li><a href="./sobre.html">Sobre</a></li>
+                    <li><a href="./login.html" id="login-status">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Email: localvozdobairro@gmail.com</p>
+                <p>Telefone: +55 (11) 99841-4354</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Voz do Bairro. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/relatório.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./js/support.js"></script>
+    <script src="./js/theme.js"></script>
+
+</body>
+</html>

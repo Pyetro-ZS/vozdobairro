@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voz do Bairro</title>
+    <link rel="icon" href="./img/logo-icon.png" type="image/png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/perfil.css">
+    <link rel="stylesheet" href="./css/support.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/report-cards.css">
+    <link rel="stylesheet" href="./css/dark-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html">
+                    <img class="logo"src="./img/Logo.png" alt="Logo Voz do Bairro">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="./index.html" class="active">Início</a>
+                <a href="./map.html">Ver Mapa</a>
+                <a href="./relatórios.html">Relatórios</a>
+                <a href="./report.html">Relatar Problema</a>
+                <a href="./sobre.html">Sobre</a>
+                <a href="./login.html" id="login-status">Login</a>
+                <div class="user-avatar" id="user-avatar" style="display: none;">
+                    <div class="avatar-circle">
+                        <span class="initials">?</span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="./perfil.html">Meu Perfil</a>
+                        <a href="#" id="logout-link">Sair</a>
+                    </div>
+                </div>
+                <button class="theme-toggle-with-images" id="theme-toggle" aria-label="Alternar tema">
+                    <img src="./img/sol.png" alt="Ícone de Sol" class="sun-icon">
+                    <img src="./img/lua-crescente.png" alt="Ícone de Lua" class="moon-icon">
+                </button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Ajude a Melhorar Nossa Comunidade</h1>
+                <p>Reporte problemas de infraestrutura como buracos e calçadas danificadas para tornar nossa comunidade mais segura para todos.</p>
+                <div class="cta-buttons">
+                    <a href="./report.html" class="btn btn-primary">Reportar um Problema</a>
+                    <a href="./map.html" class="btn btn-secondary">Ver Mapa de Problemas</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon"><img src="./img/marcador-de-localizacao.png" alt="Geolocalização"></div>
+                <h3>Geolocalização</h3>
+                <p>Detecte automaticamente sua localização ou selecione-a em um mapa para relatar problemas com precisão.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><img src="./img/smartphones.png" alt="smartphone"></div>
+                <h3>Amigável para Dispositivos Móveis</h3>
+                <p>Reporte problemas em movimento usando seu smartphone ou tablet.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><img src="./img/pessoas.png" alt="pesssoa"></div>
+                <h3>Dirigido pela Comunidade</h3>
+                <p>Junte-se a outros voluntários para tornar nossa comunidade mais segura e bem mantida.</p>
+            </div>
+        </section>
+
+        <section class="recent-reports">
+            <h2>Relatórios Recentes</h2>
+            <div class="reports-container" id="recent-reports-list">
+                <p class="loading-text">Carregando relatórios recentes...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Voz do Bairro</h3>
+                <p>Uma plataforma para os cidadãos reportarem problemas de infraestrutura em sua comunidade.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="./index.html">Início</a></li>
+                    <li><a href="./map.html">Ver Mapa</a></li>
+                    <li><a href="./relatórios.html">Relatórios</a></li>
+                    <li><a href="./report.html">Reportar Problema</li>
+                    <li><a href="./sobre.html" >Sobre</a></li>
+                    <li><a href="./login.html" id="login-status">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Email: localvozdobairro@gmail.com</p>
+                <p>Telefone: +55 (11) 99841-4354</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Voz do Bairro. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Aba de Suporte -->
+    <div id="support-tab" class="support-tab">
+        <span>Suporte</span>
+    </div>
+
+    <!-- Modal de Suporte -->
+    <div id="support-modal" class="support-modal">
+        <div class="support-modal-content">
+            <span class="close-support-modal">&times;</span>
+            <h2>Como podemos ajudar?</h2>
+            <ul class="support-options">
+                <li><a href="./sobre.html#faq">FAQ</a></li>
+                <li><a href="./sobre.html#contact">Formulário de Contato</a></li>
+                <li><a href="#">Chat ao Vivo (em breve)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+    <script src="./js/relatório.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./js/support.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/theme.js"></script>
+
+</body>
+</html>
+

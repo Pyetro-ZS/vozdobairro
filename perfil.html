@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Voz do Bairro</title>
+    <link rel="icon" href="./img/logo-icon.png" type="image/png">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/perfil.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/dark-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html">
+                    <img class="logo" src="./img/Logo.png" alt="Logo Voz do Bairro">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="./index.html">Início</a>
+                <a href="./map.html">Ver Mapa</a>
+                <a href="./relatórios.html">Relatórios</a>
+                <a href="./report.html">Relatar Problema</a>
+                <a href="./sobre.html">Sobre</a>
+                <div class="user-avatar" id="user-avatar">
+                    <div class="avatar-circle">
+                        <span class="initials" id="user-initials"></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="./perfil.html">Meu Perfil</a>
+                        <a href="#" id="logout-link">Sair</a>
+                    </div>
+                </div>
+                <button class="theme-toggle-with-images" id="theme-toggle" aria-label="Alternar tema">
+                    <img src="./img/sol.png" alt="Ícone de Sol" class="sun-icon">
+                    <img src="./img/lua-crescente.png" alt="Ícone de Lua" class="moon-icon">
+                </button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <span class="profile-initials" id="profile-initials">?</span>
+                </div>
+                <div class="profile-info">
+                    <h1 id="profile-name">Carregando...</h1>
+                    <p id="profile-email">Carregando...</p>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-section">
+                    <h2>Informações Pessoais</h2>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <span class="info-label">Nome:</span>
+                            <span class="info-value" id="info-name">Carregando...</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email:</span>
+                            <span class="info-value" id="info-email">Carregando...</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Membro desde:</span>
+                            <span class="info-value" id="info-date">Carregando...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h2>Meus Relatórios</h2>
+                    <div class="reports-list" id="user-reports">
+                        <!-- Relatórios do usuário serão carregados aqui -->
+                        <p class="loading-text">Carregando relatórios...</p>
+                    </div>
+                    <button id="toggle-reports" class="btn btn-primary" style="display: none;">Ver menos</button>
+                </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        const userReportsContainer = document.getElementById("user-reports");
+                        const toggleReportsButton = document.getElementById("toggle-reports");
+
+                        function carregarRelatoriosUsuario() {
+                            fetch("./php/perfil.php")
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    if (data.status === "sucesso") {
+                                        const relatorios = data.usuario.relatorios;
+                                        if (relatorios.length === 0) {
+                                            userReportsContainer.innerHTML = `<p class="no-reports">Nenhum relatório encontrado.</p>`;
+                                            return;
+                                        }
+
+                                        let html = "";
+                                        relatorios.forEach((relatorio, index) => {
+                                            html += `
+                                                <div class="report-card" style="display: ${index < 2 ? "block" : "none"};">
+                                                    <h3>${relatorio.tipo}</h3>
+                                                    <p>${relatorio.descricao}</p>
+                                                    <p><strong>Gravidade:</strong> ${relatorio.gravidade}</p>
+                                                    <p><strong>Status:</strong> ${relatorio.status}</p>
+                                                    <p><strong>Data:</strong> ${relatorio.data_criacao}</p>
+                                                </div>
+                                            `;
+                                        });
+                                        userReportsContainer.innerHTML = html;
+
+                                        if (relatorios.length > 2) {
+                                            toggleReportsButton.style.display = "block";
+                                            toggleReportsButton.addEventListener("click", () => {
+                                                const isCollapsed = toggleReportsButton.textContent === "Ver mais";
+                                                document.querySelectorAll(".report-card").forEach((card, index) => {
+                                                    card.style.display = isCollapsed || index < 2 ? "block" : "none";
+                                                });
+                                                toggleReportsButton.textContent = isCollapsed ? "Ver menos" : "Ver mais";
+                                            });
+                                        }
+                                    } else {
+                                        userReportsContainer.innerHTML = `<p class="no-reports">${data.mensagem}</p>`;
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.error("Erro ao carregar relatórios do usuário:", error);
+                                    userReportsContainer.innerHTML = `<p class="no-reports">Erro ao carregar relatórios.</p>`;
+                                });
+                        }
+
+                        carregarRelatoriosUsuario();
+                    });
+                </script>
+
+                <div class="profile-section">
+                    <h2>Configurações da Conta</h2>
+                    <div class="settings-card">
+                        <button id="edit-profile-btn" class="btn-settings">
+                            <i class="fas fa-edit"></i> Editar Perfil
+                        </button>
+                        <button id="change-password-btn" class="btn-settings">
+                            <i class="fas fa-key"></i> Alterar Senha
+                        </button>
+                        <button id="delete-account-btn" class="btn-settings btn-danger">
+                            <i class="fas fa-trash"></i> Excluir Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para Editar Perfil -->
+    <div id="modal-editar-perfil" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Editar Perfil</h2>
+            <form id="form-editar-perfil">
+                <div class="form-group">
+                    <label for="editar-nome">Nome</label>
+                    <input type="text" id="editar-nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="editar-email">Email</label>
+                    <input type="email" id="editar-email" name="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Alterar Senha -->
+    <div id="modal-alterar-senha" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Alterar Senha</h2>
+            <form id="form-alterar-senha">
+                <div class="form-group">
+                    <label for="senha-atual">Senha Atual</label>
+                    <input type="password" id="senha-atual" name="senha-atual" required>
+                </div>
+                <div class="form-group">
+                    <label for="nova-senha">Nova Senha</label>
+                    <input type="password" id="nova-senha" name="nova-senha" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmar-senha">Confirmar Nova Senha</label>
+                    <input type="password" id="confirmar-senha" name="confirmar-senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Alterar Senha</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Excluir Conta -->
+    <div id="modal-excluir-conta" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Excluir Conta</h2>
+            <p>Tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita.</p>
+            <button id="confirmar-exclusao" class="btn btn-danger">Excluir Conta</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Voz do Bairro</h3>
+                <p>Uma plataforma para cidadãos relatarem problemas de infraestrutura em sua comunidade.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul></ul>
+                    <li><a href="./index.html">Início</a></li>
+                    <li><a href="./map.html">Ver Mapa</a></li>
+                    <li><a href="./relatórios.html">Relatórios</a></li>
+                    <li><a href="./report.html">Relatar Problema</a></li>
+                    <li><a href="./sobre.html">Sobre</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Email: contato@vozbairro.com.br</p>
+                <p>Telefone: +55 (11) 99841-4354</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Voz do Bairro. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/perfil.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/theme.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const editProfileBtn = document.getElementById("edit-profile-btn");
+            const changePasswordBtn = document.getElementById("change-password-btn");
+            const deleteAccountBtn = document.getElementById("delete-account-btn");
+
+            // Função para exibir notificações Toastify
+            function showToast(message, type = "info") {
+                let backgroundColor;
+                switch (type) {
+                    case "success":
+                        backgroundColor = "#4caf50"; // Verde
+                        break;
+                    case "error":
+                        backgroundColor = "#f44336"; // Vermelho
+                        break;
+                    default:
+                        backgroundColor = "#2196f3"; // Azul
+                }
+
+                Toastify({
+                    text: message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: backgroundColor,
+                    stopOnFocus: true,
+                }).showToast();
+            }
+
+            // Editar perfil
+            editProfileBtn.addEventListener("click", () => {
+                fetch("./php/editar_perfil.php", { method: "POST" })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        showToast(data.mensagem || "Perfil atualizado com sucesso!", data.status === "sucesso" ? "success" : "error");
+                    })
+                    .catch(() => {
+                        showToast("Erro ao atualizar perfil. Tente novamente mais tarde.", "error");
+                    });
+            });
+
+            // Alterar senha
+            changePasswordBtn.addEventListener("click", () => {
+                fetch("./php/alterar_senha.php", { method: "POST" })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        showToast(data.mensagem || "Senha alterada com sucesso!", data.status === "sucesso" ? "success" : "error");
+                    })
+                    .catch(() => {
+                        showToast("Erro ao alterar senha. Tente novamente mais tarde.", "error");
+                    });
+            });
+
+            // Excluir conta
+            deleteAccountBtn.addEventListener("click", () => {
+                if (!confirm("Tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita.")) {
+                    return;
+                }
+
+                fetch("./php/excluir_conta.php", { method: "POST" })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        showToast(data.mensagem || "Conta excluída com sucesso!", data.status === "sucesso" ? "success" : "error");
+                        if (data.status === "sucesso") {
+                            setTimeout(() => {
+                                window.location.href = "index.html";
+                            }, 1500);
+                        }
+                    })
+                    .catch(() => {
+                        showToast("Erro ao excluir conta. Tente novamente mais tarde.", "error");
+                    });
+            });
+
+            const modals = document.querySelectorAll(".modal");
+            const closeModalButtons = document.querySelectorAll(".close-modal");
+
+            // Abrir modal
+            document.getElementById("edit-profile-btn").addEventListener("click", () => {
+                document.getElementById("modal-editar-perfil").classList.remove("hidden");
+            });
+
+            document.getElementById("change-password-btn").addEventListener("click", () => {
+                document.getElementById("modal-alterar-senha").classList.remove("hidden");
+            });
+
+            document.getElementById("delete-account-btn").addEventListener("click", () => {
+                document.getElementById("modal-excluir-conta").classList.remove("hidden");
+            });
+
+            // Fechar modal
+            closeModalButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    modals.forEach(modal => modal.classList.add("hidden"));
+                });
+            });
+
+            // Fechar modal ao clicar fora do conteúdo
+            window.addEventListener("click", (event) => {
+                modals.forEach(modal => {
+                    if (event.target === modal) {
+                        modal.classList.add("hidden");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

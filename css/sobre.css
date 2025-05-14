@@ -1,0 +1,325 @@
+/* Estilos para a página Sobre */
+.about-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("../img/img_logo-3.jpg") no-repeat center center / cover;
+    color: var(--white);
+    padding: 5rem 2rem;
+    text-align: center;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+  }
+  
+  .about-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .about-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-hero p {
+    font-size: 1.2rem;
+  }
+  
+  .about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  
+  .about-section {
+    margin-bottom: 4rem;
+  }
+  
+  .about-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .about-section h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto;
+  }
+  
+  .about-section p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  
+  /* Como Funciona */
+  .how-it-works {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .step-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition);
+    animation-name: cardFadeIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+  }
+  
+  .step-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1rem;
+  }
+  
+  .step-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+  }
+  
+  /* Benefícios */
+  .benefits-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .benefit-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition);
+    animation-name: cardFadeIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .benefit-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .benefit-card h3 {
+    margin-bottom: 1rem;
+    color: var (--primary-dark);
+  }
+  
+  /* FAQ */
+  .faq-container {
+    max-width: 800px;
+    margin: 2rem auto 0;
+  }
+  
+  .faq-item {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    animation-name: faqFadeIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+  }
+  
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .faq-question:hover {
+    background-color: var(--gray-light);
+  }
+  
+  .faq-question h3 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  
+  .faq-toggle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  .faq-answer {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .faq-answer p {
+    padding-bottom: 1.5rem;
+  }
+  
+  .faq-item.active .faq-question {
+    background-color: var(--primary-light);
+  }
+  
+  /* Contato */
+  .contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .contact-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: var(--transition);
+  }
+  
+  .social-link:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .about-hero h1 {
+      font-size: 2rem;
+    }
+  
+    .about-section h2 {
+      font-size: 1.8rem;
+    }
+  
+    .contact-info {
+      grid-template-columns: 1fr;
+    }
+  }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes faqFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos para o formulário de contato */
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+#contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--gray);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+#contact-form button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#contact-form button:hover {
+    background-color: var(--primary-dark);
+}
+

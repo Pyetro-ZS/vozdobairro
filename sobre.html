@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Sistema de Relatórios Comunitários</title>
+    <link rel="icon" href="./img/logo-icon.png" type="image/png">
+    <link rel="stylesheet" href="./css/sobre.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/perfil.css">
+    <link rel="stylesheet" href="./css/dark-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    
+   
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html">
+                    <img class="logo"src="./img/Logo.png" alt="Logo Voz do Bairro">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="./index.html">Início</a>
+                <a href="./map.html">Ver Mapa</a>
+                <a href="./relatórios.html">Relatórios</a>
+                <a href="./report.html">Relatar Problema</a>
+                <a href="./sobre.html" class="active">Sobre</a>
+                <a href="./login.html" id="login-status">Login</a>
+                <div class="user-avatar" id="user-avatar" style="display: none;">
+                    <div class="avatar-circle">
+                        <span class="initials">?</span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="./perfil.html">Meu Perfil</a>
+                        <a href="#" id="logout-link">Sair</a>
+                    </div>
+                </div>
+                <button class="theme-toggle-with-images" id="theme-toggle" aria-label="Alternar tema">
+                    <img src="./img/sol.png" alt="Ícone de Sol" class="sun-icon">
+                    <img src="./img/lua-crescente.png" alt="Ícone de Lua" class="moon-icon">
+                </button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <h1>Sobre o Sistema de Relatórios Comunitários</h1>
+                <p>Conectando cidadãos para melhorar nossa infraestrutura urbana</p>
+            </div>
+        </section>
+
+        <section class="about-content">
+            <div class="about-section">
+                <h2>Nossa Missão</h2>
+                <p>O Sistema de Relatórios Comunitários foi criado com uma missão clara: capacitar os cidadãos a participarem ativamente na melhoria de sua comunidade. Acreditamos que cada pessoa tem um papel importante na identificação e resolução de problemas de infraestrutura urbana.</p>
+                <p>Nossa plataforma oferece uma maneira simples e eficaz para que qualquer pessoa possa reportar problemas como buracos nas ruas, calçadas danificadas, iluminação pública defeituosa e outros problemas de infraestrutura que afetam a qualidade de vida e a segurança de todos.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>Como Funciona</h2>
+                <div class="how-it-works">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Cadastre-se</h3>
+                        <p>Crie uma conta gratuita para começar a reportar problemas em sua comunidade.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Identifique o Problema</h3>
+                        <p>Encontre um problema de infraestrutura que precisa de atenção em sua área.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Reporte</h3>
+                        <p>Use nosso formulário simples para reportar o problema, incluindo localização e detalhes.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Acompanhe</h3>
+                        <p>Visualize seu relatório e outros no mapa e acompanhe o progresso.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2>Benefícios para a Comunidade</h2>
+                <div class="benefits-container">
+                    <div class="benefit-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Mapeamento de Problemas</h3>
+                        <p>Visualize todos os problemas reportados em um mapa interativo, permitindo identificar áreas que precisam de mais atenção.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Engajamento Comunitário</h3>
+                        <p>Promove a participação ativa dos cidadãos na melhoria de sua própria comunidade, fortalecendo o senso de pertencimento.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Segurança Melhorada</h3>
+                        <p>Ao identificar e resolver problemas de infraestrutura, contribuímos para um ambiente urbano mais seguro para todos.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Eficiência</h3>
+                        <p>Facilita a identificação e priorização de problemas, permitindo uma alocação mais eficiente de recursos para resolvê-los.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2>Perguntas Frequentes</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Quem pode usar o sistema?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Qualquer pessoa pode se cadastrar e usar o sistema gratuitamente. Nosso objetivo é permitir que todos os cidadãos contribuam para a melhoria de sua comunidade.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Como os problemas são resolvidos?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Nosso sistema facilita a identificação e visualização dos problemas. As informações coletadas podem ser utilizadas por órgãos públicos, associações de bairro e outras entidades responsáveis pela manutenção da infraestrutura urbana.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Posso reportar qualquer tipo de problema?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O sistema é focado em problemas de infraestrutura urbana, como buracos nas ruas, calçadas danificadas, iluminação pública defeituosa, entre outros. Para outros tipos de problemas, recomendamos contatar diretamente os órgãos responsáveis.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Meus dados pessoais estão seguros?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim, levamos a privacidade muito a sério. Apenas coletamos as informações necessárias para o funcionamento do sistema e não compartilhamos seus dados pessoais com terceiros sem seu consentimento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2>Entre em Contato</h2>
+                <p>Tem dúvidas, sugestões ou feedback? Ficaremos felizes em ouvir você!</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>localvozdobairro@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+55 (11) 99841-4354</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>R. José Viêira Martins, 270 - Jardim Itapura, São Paulo - SP, 04466-025</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Aba de Suporte -->
+    <div id="support-tab" class="support-tab">
+        <span>Suporte</span>
+    </div>
+
+    <!-- Modal de Suporte -->
+    <div id="support-modal" class="support-modal">
+        <div class="support-modal-content">
+            <span class="close-support-modal">&times;</span>
+            <h2>Como podemos ajudar?</h2>
+            <ul class="support-options">
+                <li><a href="./sobre.html#faq">FAQ</a></li>
+                <li><a href="./sobre.html#contact">Formulário de Contato</a></li>
+                <li><a href="#">Chat ao Vivo (em breve)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Voz do Bairro</h3>
+                <p>Uma plataforma para cidadãos reportarem problemas de infraestrutura em sua comunidade.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="./index.html">Início</a></li>
+                    <li><a href="./map.html">Ver Mapa</a></li>
+                    <li><a href="./relatórios.html">Relatórios</a></li>
+                    <li><a href="./report.html">Reportar Problema</a></li>
+                    <li><a href="./sobre.html">Sobre</a></li>
+                    <li><a href="./login.html" class="login-status">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Email: localvozdobairro@gmail.com</p>
+                <p>Telefone: +55 (11) 99841-4354</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Community Issue Reporter. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/sobre.js"></script>
+    <script src="./js/support.js"></script>
+    <script src="./js/theme.js"></script>
+    
+</body>
+</html>
+
